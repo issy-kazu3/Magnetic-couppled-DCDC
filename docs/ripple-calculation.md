@@ -185,3 +185,28 @@ for each time step:
     I1 = I1 + (VL1 / L1_eff) * dt
     I2 = I2 + (VL2 / L2_eff) * dt
 ## 10. 損失計算（Loss Calculation)
+銅損
+𝑃
+cu
+=
+𝐼
+2
+𝑅
+鉄損
+磁束波形から Steinmetz 係数を用いて計算します。
+
+## 11. まとめ
+Maxwell のインダクタンスマップを使うことで
+非線形磁気挙動を正確に再現できる
+
+リプル電流・磁束・電圧を逐次計算することで
+実測に近い波形が得られる
+
+小型リアクトルでも高電力 DCDC が成立する理由を説明できる
+
+## 12. 関連ドキュメント
+Maxwell Workflow
+
+Inductance Map Theory
+
+VBS Script Structure
