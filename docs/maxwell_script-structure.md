@@ -46,10 +46,12 @@ VBS の先頭では、モデル寸法・電流値・保存パスなどを宣言�
 例：
 
 コード
+```vbs
 dim Curl, Cur2     '右、左コイルの電流
 dim Turn           'ターン数
 dim Cuh, Cut       '銅線寸法
 dim savepath       '保存パス
+```
 重要ポイント
 Curl と Cur2 が I₁, I₂ に相当する
 
@@ -61,9 +63,11 @@ Curl と Cur2 が I₁, I₂ に相当する
 例：
 
 コード
+```vbs
 Cuc1 = 8.4   'コイル間クリアランス
 Clw  = 3.05  'コア側クリアランス
 Icorew = 32  'コア幅
+```
 ポイント
 Maxwell モデルの寸法は VBS で完全再現可能
 
@@ -75,8 +79,10 @@ Python DOE から寸法パラメータを渡すことも可能
 電流 I₁, I₂ を設定します。
 
 コード
+```vbs
 Curl = 100.0
 Cur2 = 50.0
+```
 極性が重要
 L1 と L2 の巻き方向が逆
 
@@ -88,7 +94,9 @@ V1→V2の電流で DC フラックスが打ち消し合う
 Maxwell の解析を実行します。
 
 コード
+```vbs
 oDesign.Solve
+```
 Python DOE では、この VBS を電流条件ごとに呼び出し、
 数十〜数百ケースを自動計算します。
 
@@ -106,8 +114,10 @@ M は磁束リンクから計算されます。
 結果を CSV に保存します。
 
 コード
+```vbs
 savedata = "D:\Userarea\...\inductance.csv"
 saveflux = "D:\Userarea\...\flux.csv"
+```
 Python 側でこの CSV を読み込み、
 インダクタンスマップを構築します。
 
