@@ -7,7 +7,38 @@ Conventional linear inductor models cannot be used due to strong current‑depen
 <img width="156" height="152" alt="inductor" src="https://github.com/user-attachments/assets/915d4e28-277c-40b4-85b2-137171a9bc19" />
 <img width="266" height="134" alt="dcdc" src="https://github.com/user-attachments/assets/3b74cd42-bfb7-4134-8c30-a0a6ac855e8a" />
 
+## Key Advantages
 
+This tool provides a unique workflow that allows ripple current waveforms and loss estimations 
+to be computed **entirely from lightweight magnetostatic simulations**.  
+This approach eliminates the need for time‑domain transient analysis, dramatically reducing 
+computation time while maintaining high physical fidelity.
+
+### Why this matters
+
+- **Ripple waveforms from magnetostatic data only**  
+  Conventional methods require transient simulations. This tool reconstructs ripple behavior 
+  directly from inductance maps (L1, L2, M).
+
+- **Extremely fast computation**  
+  Magnetostatic DOE runs are lightweight, enabling large parameter sweeps without the heavy 
+  cost of transient solvers.
+
+- **End‑to‑end loss estimation**  
+  Copper loss (I²R) and core loss (Steinmetz) are computed automatically from the reconstructed 
+  waveforms.
+
+- **Robust to geometry and material changes**  
+  The inductance‑map‑based formulation makes the workflow highly tolerant to coil dimension 
+  or material modifications.
+
+- **Hybrid Maxwell × Python architecture**  
+  Combines the accuracy of Maxwell with the automation and numerical flexibility of Python.
+
+- **Practical for engineering use**  
+  What normally takes hours in transient simulation can be reduced to minutes, enabling rapid 
+  design iteration and exploration.
+  
 # Features
 Magnetic‑coupled reactor modeling
 
