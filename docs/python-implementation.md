@@ -31,7 +31,7 @@ tools/plot_waveforms.py
 Maxwell から出力された CSV を読み込みます。
 
 python
-
+```python
 import numpy as np
 from scipy.interpolate import RegularGridInterpolator
 
@@ -49,8 +49,10 @@ def load_inductance_map(path):
     M_map  = RegularGridInterpolator((I1, I2), M)
 
     return L1_map, L2_map, M_map
-3. マップを使った磁束・電圧計算
+```
+# 3. マップを使った磁束・電圧計算
 python
+```python
 def compute_flux(L1_map, L2_map, M_map, I1, I2):
     L1 = L1_map([I1, I2])
     L2 = L2_map([I1, I2])
@@ -59,13 +61,17 @@ def compute_flux(L1_map, L2_map, M_map, I1, I2):
     Phi1 = L1 * I1 + M * I2
     Phi2 = L2 * I2 + M * I1
     return Phi1, Phi2
+```
 電圧は差分で計算します。
 
 python
-def compute_voltage(Phi, Phi_prev, dt):
+```python
+ef compute_voltage(Phi, Phi_prev, dt):
     return -(Phi - Phi_prev) / dt
-4. 時間ステップループ（リプル計算の骨格）
+```
+# 4. 時間ステップループ（リプル計算の骨格）
 python
+```python
 def simulate_ripple(params, L1_map, L2_map, M_map):
     dt = params['dt']
     N  = params['steps']
@@ -103,16 +109,20 @@ def simulate_ripple(params, L1_map, L2_map, M_map):
         I2_list.append(I2)
 
     return np.array(I1_list), np.array(I2_list)
-5. 損失計算
+```
+# 5. 損失計算
 python
+```python
 def compute_copper_loss(I, R):
     return np.mean(I**2) * R
 
 def compute_iron_loss(Phi, dt, k, alpha, beta):
     # 簡易 Steinmetz 近似などをここに実装
     pass
-6. 波形プロット
+```
+# 6. 波形プロット
 python
+```python
 import matplotlib.pyplot as plt
 
 def plot_ripple(t, I1, I2):
@@ -125,11 +135,12 @@ def plot_ripple(t, I1, I2):
     plt.legend()
     plt.grid(True)
     plt.show()
-7. まとめ
-Maxwell のインダクタンスマップを Python で読み込み・補間
+```
+# 7. まとめ
+- Maxwell のインダクタンスマップを Python で読み込み・補間
 
-各時刻の (I1, I2) に応じて L1, L2, M を参照
+- 各時刻の (I1, I2) に応じて L1, L2, M を参照
 
-磁束 → 電圧 → 電流更新のループでリプル波形を生成
+- 磁束 → 電圧 → 電流更新のループでリプル波形を生成
 
-損失計算・プロットまで一貫して実装可能
+- 損失計算・プロットまで一貫して実装可能
