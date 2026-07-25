@@ -55,30 +55,18 @@ $$
 Python では差分で計算します：
 
 コード
+
 V1 = -(Phi1[i] - Phi1[i-1]) / dt
+
 V2 = -(Phi2[i] - Phi2[i-1]) / dt
+
 ## 5. 電流更新（Current Update）
 電流は以下の式で更新します。
 
-𝐼
-(
-𝑡
-+
-𝑑
-𝑡
-)
-=
-𝐼
-(
-𝑡
-)
-+
-𝑉
-𝐿
-𝐿
-eff
-𝑑
-𝑡
+$$
+I(t+dt) = I(t) + \frac{V_L}{L_{\text{eff}}} dt
+$$
+
 ただし、磁気結合リアクトルでは L_eff が L と M の組み合わせで決まるため、
 逐次的にマップを参照して計算します。
 
@@ -136,14 +124,15 @@ for each time step:
     I1 = I1 + (VL1 / L1_eff) * dt
     I2 = I2 + (VL2 / L2_eff) * dt
 ## 10. 損失計算（Loss Calculation)
+
 銅損
-𝑃
-cu
-=
-𝐼
-2
-𝑅
+
+$$
+P_{\mathrm{cu}} = I^2 R
+$$
+
 鉄損
+
 磁束波形から Steinmetz 係数を用いて計算します。
 
 ## 11. まとめ
