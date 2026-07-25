@@ -19,13 +19,13 @@ M(I₁, I₂)
 Python 側では補間済みの関数として扱います：
 
 コード
-
+```python
 L1 = L1_map(I1, I2)
 
 L2 = L2_map(I1, I2)
 
 M  = M_map(I1, I2)
-
+```
 #  3. 磁束計算（Flux Calculation）
 磁束は以下の式で求まります。
 
@@ -55,11 +55,11 @@ $$
 Python では差分で計算します：
 
 コード
-
+```python
 V1 = -(Phi1[i] - Phi1[i-1]) / dt
 
 V2 = -(Phi2[i] - Phi2[i-1]) / dt
-
+```
 ## 5. 電流更新（Current Update）
 電流は以下の式で更新します。
 
@@ -106,8 +106,9 @@ DC フラックスがキャンセルされる
 
 ## 9. Python 実装の流れ（Pseudo Code）
 コード
+```python
 for each time step:
-    # 1. 現在の電流から L と M を取得
+   #1. 現在の電流から L と M を取得
     L1 = L1_map(I1, I2)
     L2 = L2_map(I1, I2)
     M  = M_map(I1, I2)
@@ -123,6 +124,8 @@ for each time step:
     # 4. 電流更新
     I1 = I1 + (VL1 / L1_eff) * dt
     I2 = I2 + (VL2 / L2_eff) * dt
+```
+
 ## 10. 損失計算（Loss Calculation)
 
 銅損
